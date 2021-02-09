@@ -1,0 +1,33 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding :20px;
+    
+}
+.header{
+    margin: auto;
+    font-size: 40px;
+    color:  slateblue;
+}
+.select
+{
+    padding-top: 50px;
+    margin: auto;
+}
+.select-section{
+    width:400px;
+    height:40px;
+    border-radius: 10px;
+    border-color:  slateblue;
+
+}
+
+.select-button{
+    border-radius: 10px;
+    width: 80px;
+    height: 40px;
+    border-color: slateblue;
+    background-color:transparent;
+}
+

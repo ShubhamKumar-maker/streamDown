@@ -1,0 +1,17 @@
+<div class="container">
+  <div class="header">
+<header>STREAM DOWN</header>
+  </div>
+<hr>
+<div class="select">
+<select (change)="selectChangeHandler($event)" class="select-section">
+  <option >Select Entity</option>
+  <option value="Student">Student .xlsx</option>
+  <option value="Course">Course .xlsx</option>
+</select>
+
+&nbsp;
+<button (click)="downloadfile(selectedEntity)" class="select-button">Download</button>
+</div>
+<br>
+</div>

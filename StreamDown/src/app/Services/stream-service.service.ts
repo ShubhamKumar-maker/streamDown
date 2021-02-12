@@ -1,16 +1,23 @@
-import { Injectable } from '@angular/core';
-import {HttpClient, HttpParams} from "@angular/common/http";
+import { Injectable,Inject } from '@angular/core';
+import {HttpClient, HttpParams,HttpEvent} from "@angular/common/http";
 import { Observable } from 'rxjs';
+import { download, Download } from "../../download"
+import {saveAs} from 'file-saver';
+import { SAVER, Saver } from "../../saver.provider"
 
 @Injectable({
   providedIn: 'root'
 })
 export class StreamServiceService {
 
-  REQUEST_URI="/FileDownloader/get/excel/";
+  REQUEST_URI="";
   ENTITY_NAME:String="";
 
-  constructor(private http:HttpClient) { }
+  constructor(
+    private http: HttpClient,
+    @Inject(SAVER) private save: Saver
+  ) {
+  }
 
   // downloadfile(data:any)
   // {
@@ -22,12 +29,21 @@ export class StreamServiceService {
   //     })
   //   }
 
-   async downloadfile(value:String): Promise<Observable<Blob>>{
-        const REQUEST_URI=this.REQUEST_URI+value;
-       return  await this.http.get(REQUEST_URI,{
-          responseType:'blob'
-        })
-      }
+  download(url: string, filename?: string): Observable<Download> {
+    const REQUEST_URI='/FileDownloader/get/excel/'+filename;
+    return this.http.get(REQUEST_URI, {
+      reportProgress: true,
+      observe: 'events',
+      responseType: 'blob'
+    }).pipe(download(blob => this.save(blob, filename+".xlsx")))
+  }
+
+
+  blob(url: string, filename?: string): Observable<Blob> {
+    return this.http.get(url, {
+      responseType: 'blob'
+    })
+  }
 
       //  REQUEST_URI='/api/excel/download';
       //  downloadfile(): Observable<Blob> {

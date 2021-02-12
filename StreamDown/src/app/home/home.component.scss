@@ -31,3 +31,14 @@
     background-color:transparent;
 }
 
+mat-card {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .file {
+  
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }

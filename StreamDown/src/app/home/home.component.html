@@ -1,17 +1,36 @@
 <div class="container">
   <div class="header">
-<header>STREAM DOWN</header>
+<header>SREAM DOWN</header>
   </div>
 <hr>
 <div class="select">
-<select (change)="selectChangeHandler($event)" class="select-section">
+ <select (change)="selectChangeHandler($event)" class="select-section">
   <option >Select Entity</option>
   <option value="Student">Student .xlsx</option>
   <option value="Course">Course .xlsx</option>
-</select>
+  <option value="Assignment">Assignment .xlsx</option>
+</select> 
 
-&nbsp;
-<button (click)="downloadfile(selectedEntity)" class="select-button">Download</button>
+
+ <!-- <button (click)="downloadfile(selectedEntity)" class="select-button">Download</button>  -->
 </div>
 <br>
+<!-- <mat-progress-bar *ngIf="download$ | async as download"
+		[mode]="download.state == 'PENDING' ? 'buffer' : 'determinate'" 
+    [value]="download.progress">
+	</mat-progress-bar> -->
+
 </div>
+
+<mat-card>
+	<div class="file">
+		<p>{{ slides.name }}</p>
+		<button (click)="download(slides)" mat-raised-button color="primary">Download</button>
+	</div>
+	<mat-progress-bar *ngIf="download$ | async as download"
+		[mode]="download.state == 'PENDING' ? 'buffer' : 'determinate'" 
+    [value]="download.progress">
+	</mat-progress-bar>
+
+
+</mat-card>
